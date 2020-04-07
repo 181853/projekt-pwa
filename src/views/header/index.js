@@ -13,8 +13,11 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Button variant="outline-secondary" as={Link} to={ROUTES.LOGIN}>
+          <Button variant="outline-secondary mr-2" as={Link} to={ROUTES.LOGIN}>
             Logowanie
+          </Button>
+          <Button variant="outline-info" as={Link} to={ROUTES.REGISTRATION}>
+            Rejestracja
           </Button>
         </Navbar.Collapse>
       </Navbar>
