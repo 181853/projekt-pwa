@@ -4,6 +4,7 @@ import HomePage from "./home-page";
 import { ROUTES } from "../constants";
 import Layout from "./layout";
 import Registration from "./registration";
+import LogIn from "./login";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Switch>
           <Route exact path={ROUTES.HOME} component={HomePage} />
           <Route exact path={ROUTES.REGISTRATION} component={Registration} />
+          <Route exact path={ROUTES.LOGIN} component={LogIn} />
         </Switch>
       </Layout>
     </BrowserRouter>

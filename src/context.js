@@ -22,11 +22,15 @@ export const FirebaseProvider = ({ children }) => {
   const createUserWithEmailAndPassword = (email, password) =>
     auth.createUserWithEmailAndPassword(email, password);
 
+  const signInWithEmailAndPassword = (email, password) =>
+    auth.signInWithEmailAndPassword(email, password);
+
   return (
     <FirebaseContext.Provider
       value={{
         app,
         createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
       }}
     >
       {children}
