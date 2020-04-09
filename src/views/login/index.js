@@ -8,8 +8,8 @@ import { ERRORS, ROUTES } from "../../constants";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
-const Registration = ({ history }) => {
-  const { createUserWithEmailAndPassword } = useContext(FirebaseContext);
+const LogIn = ({ history }) => {
+  const { signInWithEmailAndPassword } = useContext(FirebaseContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const emailInput = createRef();
@@ -19,7 +19,7 @@ const Registration = ({ history }) => {
     e.preventDefault();
     setIsLoading(true);
 
-    createUserWithEmailAndPassword(
+    signInWithEmailAndPassword(
       emailInput.current.value,
       passwordInput.current.value
     )
@@ -41,15 +41,18 @@ const Registration = ({ history }) => {
   return (
     <Row className="justify-content-md-center">
       <Col xs md={6}>
-        <Card className="mb-4 shadow-sm">
+        <Card className="mb-4 shadow-sm card-signin">
           <Card.Body>
-            <Card.Title className="text-center mb-3">
-              Zarejestruj się
-            </Card.Title>
+            <Card.Title className="text-center mb-3">Zaloguj się</Card.Title>
+
             <Form onSubmit={onSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control ref={emailInput} type="email" />
+                <Form.Control
+                  ref={emailInput}
+                  type="email"
+                  autoComplete="username"
+                />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
@@ -60,8 +63,8 @@ const Registration = ({ history }) => {
               {error && <Alert variant="danger">{error}</Alert>}
 
               <div className="text-right">
-                <Button disabled={isLoading} variant="primary" type="submit">
-                  Zarejestruj się
+                <Button disabled={isLoading} type="submit">
+                  Zaloguj się
                 </Button>
               </div>
             </Form>
@@ -72,4 +75,4 @@ const Registration = ({ history }) => {
   );
 };
 
-export default Registration;
+export default LogIn;
