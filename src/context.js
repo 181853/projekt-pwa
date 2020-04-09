@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import app from "firebase/app";
+import "firebase/auth";
 
 export const FirebaseContext = createContext(null);
 
@@ -16,10 +17,16 @@ export const FirebaseProvider = ({ children }) => {
     });
   }
 
+  const auth = app.auth();
+
+  const createUserWithEmailAndPassword = (email, password) =>
+    auth.createUserWithEmailAndPassword(email, password);
+
   return (
     <FirebaseContext.Provider
       value={{
         app,
+        createUserWithEmailAndPassword,
       }}
     >
       {children}
