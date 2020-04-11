@@ -20,6 +20,7 @@ export const FirebaseProvider = ({ children }) => {
   const auth = app.auth();
 
   const googleProvider = new app.auth.GoogleAuthProvider();
+  const githubProvider = new app.auth.GithubAuthProvider();
 
   const createUserWithEmailAndPassword = (email, password) =>
     auth.createUserWithEmailAndPassword(email, password);
@@ -29,6 +30,8 @@ export const FirebaseProvider = ({ children }) => {
 
   const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
+  const signInWithGithub = () => auth.signInWithPopup(githubProvider);
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -36,6 +39,7 @@ export const FirebaseProvider = ({ children }) => {
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
         signInWithGoogle,
+        signInWithGithub,
       }}
     >
       {children}
