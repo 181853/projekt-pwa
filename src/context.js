@@ -19,18 +19,23 @@ export const FirebaseProvider = ({ children }) => {
 
   const auth = app.auth();
 
+  const googleProvider = new app.auth.GoogleAuthProvider();
+
   const createUserWithEmailAndPassword = (email, password) =>
     auth.createUserWithEmailAndPassword(email, password);
 
   const signInWithEmailAndPassword = (email, password) =>
     auth.signInWithEmailAndPassword(email, password);
 
+  const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
   return (
     <FirebaseContext.Provider
       value={{
         app,
         createUserWithEmailAndPassword,
-        signInWithEmailAndPassword
+        signInWithEmailAndPassword,
+        signInWithGoogle,
       }}
     >
       {children}
