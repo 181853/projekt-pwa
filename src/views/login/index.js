@@ -6,14 +6,16 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FirebaseContext } from "../../context";
 import { ERRORS, ROUTES } from "../../constants";
 
 const LogIn = ({ history }) => {
-  const { signInWithEmailAndPassword, signInWithGoogle } = useContext(
-    FirebaseContext
-  );
+  const {
+    signInWithEmailAndPassword,
+    signInWithGoogle,
+    signInWithGithub,
+  } = useContext(FirebaseContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const emailInput = createRef();
@@ -23,6 +25,25 @@ const LogIn = ({ history }) => {
     setIsLoading(true);
 
     signInWithGoogle()
+      .then(() => {
+        setIsLoading(false);
+        history.push(ROUTES.HOME);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+
+        if (ERRORS[error.code]) {
+          setError(ERRORS[error.code]);
+        } else {
+          setError(error.code);
+        }
+      });
+  };
+
+  const loginWithGithub = () => {
+    setIsLoading(true);
+
+    signInWithGithub()
       .then(() => {
         setIsLoading(false);
         history.push(ROUTES.HOME);
@@ -93,15 +114,30 @@ const LogIn = ({ history }) => {
             </Form>
           </Card.Body>
           <Card.Footer className="bg-white">
-            <Button
-              disabled={isLoading}
-              variant="outline-danger"
-              block
-              onClick={loginWithGoogle}
-            >
-              <FontAwesomeIcon icon={faGoogle} className="mr-2" />
-              Zaloguj przez Google
-            </Button>
+            <Row>
+              <Col>
+                <Button
+                  disabled={isLoading}
+                  variant="outline-danger"
+                  block
+                  onClick={loginWithGoogle}
+                >
+                  <FontAwesomeIcon icon={faGoogle} className="mr-2" />
+                  Google
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  disabled={isLoading}
+                  variant="outline-dark"
+                  block
+                  onClick={loginWithGithub}
+                >
+                  <FontAwesomeIcon icon={faGithub} className="mr-2" />
+                  Github
+                </Button>
+              </Col>
+            </Row>
           </Card.Footer>
         </Card>
       </Col>
