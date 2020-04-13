@@ -1,6 +1,7 @@
 {
   "name": "projekt-pwa",
   "version": "0.1.0",
+  "homepage": "https://181853.github.io/projekt-pwa/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -19,6 +20,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
+    "clean": "rm -rf build",
+    "deploy": "npm run clean && npm run build",
     "lint": "prettier --write src/**/*.{js,jsx,css}"
   },
   "browserslist": {
