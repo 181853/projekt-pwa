@@ -43,7 +43,7 @@ export const FirebaseProvider = ({ children }) => {
         signInWithEmailAndPassword,
         signInWithGoogle,
         signInWithGithub,
-        signOut
+        signOut,
       }}
     >
       {children}

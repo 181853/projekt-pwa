@@ -20,15 +20,26 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           {user ? (
-            <Button
-              as={Button}
-              onClick={() => {
-                history.push(ROUTES.HOME);
-                signOut();
-              }}
-            >
-              Wyloguj
-            </Button>
+            <>
+              <Button
+                as={Link}
+                to={ROUTES.POST_NEW}
+                variant="outline-info"
+                className="mt-2 mt-sm-0 mr-2"
+              >
+                Dodaj ogłoszenie
+              </Button>
+
+              <Button
+                as={Button}
+                onClick={() => {
+                  history.push(ROUTES.HOME);
+                  signOut();
+                }}
+              >
+                Wyloguj
+              </Button>
+            </>
           ) : (
             <>
               <Button
