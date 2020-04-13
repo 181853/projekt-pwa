@@ -32,14 +32,18 @@ export const FirebaseProvider = ({ children }) => {
 
   const signInWithGithub = () => auth.signInWithPopup(githubProvider);
 
+  const signOut = () => auth.signOut();
+
   return (
     <FirebaseContext.Provider
       value={{
         app,
+        auth,
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
         signInWithGoogle,
         signInWithGithub,
+        signOut
       }}
     >
       {children}
