@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ROUTES } from "../../constants";
+import { useAuth } from "../../hooks";
+import { FirebaseContext } from "../../context";
 
 const Header = () => {
+  const history = useHistory();
+  const { user } = useAuth();
+  const { signOut } = useContext(FirebaseContext);
+
   return (
     <header>
       <Navbar className="bg-white mb-5" expand="sm">
@@ -13,12 +19,30 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Button variant="outline-secondary mr-2" as={Link} to={ROUTES.LOGIN}>
-            Logowanie
-          </Button>
-          <Button variant="outline-info" as={Link} to={ROUTES.REGISTRATION}>
-            Rejestracja
-          </Button>
+          {user ? (
+            <Button
+              as={Button}
+              onClick={() => {
+                history.push(ROUTES.HOME);
+                signOut();
+              }}
+            >
+              Wyloguj
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant="outline-secondary mr-2"
+                as={Link}
+                to={ROUTES.LOGIN}
+              >
+                Logowanie
+              </Button>
+              <Button variant="outline-info" as={Link} to={ROUTES.REGISTRATION}>
+                Rejestracja
+              </Button>
+            </>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </header>
