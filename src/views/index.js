@@ -5,6 +5,7 @@ import { ROUTES } from "../constants";
 import Layout from "./layout";
 import Registration from "./registration";
 import LogIn from "./login";
+import NewPost from "./new-post";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route exact path={ROUTES.HOME} component={HomePage} />
           <Route exact path={ROUTES.REGISTRATION} component={Registration} />
           <Route exact path={ROUTES.LOGIN} component={LogIn} />
+          <Route exact path={ROUTES.POST_NEW} component={NewPost} />
         </Switch>
       </Layout>
     </BrowserRouter>
