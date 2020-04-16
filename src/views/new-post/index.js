@@ -31,6 +31,19 @@ const NewPost = () => {
                 />
               </Form.Group>
 
+              <Form.Group controlId="formImage">
+                <Form.Label>Zdjęcie</Form.Label>
+                <Form.File id="form-image-custom" custom>
+                  <Form.File.Input
+                    name="image"
+                    accept="image/*"
+                  />
+                  <Form.File.Label data-browse="Wybierz zdjęcie">
+                   Nie wybrano zdjęcia
+                  </Form.File.Label>
+                </Form.File>
+              </Form.Group>
+
               <Button
                 type="submit"
                 variant="info"
