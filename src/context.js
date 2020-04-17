@@ -1,6 +1,8 @@
 import React, { createContext } from "react";
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
 export const FirebaseContext = createContext(null);
 
@@ -18,6 +20,8 @@ export const FirebaseProvider = ({ children }) => {
   }
 
   const auth = app.auth();
+  const database = app.firestore();
+  const storage = app.storage();
 
   const googleProvider = new app.auth.GoogleAuthProvider();
   const githubProvider = new app.auth.GithubAuthProvider();
@@ -34,6 +38,11 @@ export const FirebaseProvider = ({ children }) => {
 
   const signOut = () => auth.signOut();
 
+  const getImage = (postId) => storage.ref(`/images/${postId}`);
+
+  const createPost = (uid, data) =>
+    database.collection("posts").doc(uid).set(data);
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -44,6 +53,8 @@ export const FirebaseProvider = ({ children }) => {
         signInWithGoogle,
         signInWithGithub,
         signOut,
+        getImage,
+        createPost,
       }}
     >
       {children}
