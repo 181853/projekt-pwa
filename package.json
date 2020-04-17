@@ -9,10 +9,12 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "bootstrap": "^4.4.1",
     "firebase": "^7.13.1",
+    "formik": "^2.1.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "prettier": "^2.0.2",
