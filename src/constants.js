@@ -1,9 +1,9 @@
 export const ROUTES = {
-  REGISTRATION: "/rejestracja",
-  LOGIN: "/logowanie",
-  POST: "/ogloszenie",
-  POST_NEW: "/nowe-ogloszenie",
-  HOME: "/",
+  REGISTRATION: "/projekt-pwa/rejestracja",
+  LOGIN: "/projekt-pwa/logowanie",
+  POST: "/projekt-pwa/ogloszenie",
+  POST_NEW: "/projekt-pwa/nowe-ogloszenie",
+  HOME: "/projekt-pwa",
 };
 
 export const ERRORS = {
