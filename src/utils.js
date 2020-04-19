@@ -19,3 +19,11 @@ export const searchAddress = async (address) => {
     return [];
   }
 };
+
+export const formatDate = (date) =>
+  new Intl.DateTimeFormat("pl-PL", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  }).format(date);
