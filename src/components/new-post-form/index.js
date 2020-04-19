@@ -8,7 +8,7 @@ import { Formik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { ROUTES } from "../../constants";
 import { FirebaseContext } from "../../context";
-import {useAuth} from "../../hooks";
+import { useAuth } from "../../hooks";
 
 const NewPostForm = ({ children }) => {
   const { createPost, getImage } = useContext(FirebaseContext);
@@ -55,7 +55,12 @@ const NewPostForm = ({ children }) => {
   return (
     <Row className="justify-content-center">
       {postURL && (
-        <Alert variant="success" className="col-xs-10" onClose={() => setPostURL("")} dismissible>
+        <Alert
+          variant="success"
+          className="col-xs-10"
+          onClose={() => setPostURL("")}
+          dismissible
+        >
           <Alert.Heading>Dodałeś nowe ogłoszenie</Alert.Heading>
           Przejdź
           <Alert.Link

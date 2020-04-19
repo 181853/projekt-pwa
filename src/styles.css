@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.4;
-  background-color: #f8f9fc;
+  background-color: #EDF3F3;
 }
 
 #root {
@@ -15,4 +15,11 @@ body {
 
 main {
   flex: 1;
+}
+
+.truncated-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
