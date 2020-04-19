@@ -3,9 +3,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "./home-page";
 import { ROUTES } from "../constants";
 import Layout from "./layout";
-import Registration from "./registration";
-import LogIn from "./login";
 import NewPost from "./new-post";
+import AuthForm from "../components/auth-form";
+
+const LogIn = () => <AuthForm isLoginForm />;
+const Registration = () => <AuthForm />;
 
 const App = () => {
   return (
