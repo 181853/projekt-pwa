@@ -23,7 +23,7 @@ const AuthForm = ({ isLoginForm }) => {
   } = useContext(FirebaseContext);
   const history = useHistory();
   const { user } = useAuth();
-  const [submitError, submitSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   const authForm = async (cb, setIsLoading) => {
     setIsLoading(true);
@@ -37,9 +37,9 @@ const AuthForm = ({ isLoginForm }) => {
       setIsLoading(false);
 
       if (ERRORS[err.code]) {
-        submitSubmitError(ERRORS[err.code]);
+        setSubmitError(ERRORS[err.code]);
       } else {
-        submitSubmitError(err.code);
+        setSubmitError(err.code);
       }
     }
   };
