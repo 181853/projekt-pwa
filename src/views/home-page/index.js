@@ -1,21 +1,25 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import { FirebaseContext } from "../../context";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants";
-import LikeButton from "../../components/like-button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
+import LikeButton from "../../components/like-button";
+import { ROUTES } from "../../constants";
 import { formatDate } from "../../utils";
+import { FirebaseContext } from "../../context";
+import { useAuth } from "../../hooks";
 
 const HomePage = () => {
   const { getPosts } = useContext(FirebaseContext);
-  const [isLoading, setLoading] = React.useState(true);
+  const { user } = useAuth();
+  const [isLoading, setLoading] = React.useState(false);
   const [postData, setData] = React.useState(null);
 
   useEffect(() => {
@@ -75,7 +79,23 @@ const HomePage = () => {
                         </Button>
                       </Col>
                       <Col className="text-right">
-                        <LikeButton likes={likes} postId={postId} />
+                        {user ? (
+                          <LikeButton likes={likes} postId={postId} />
+                        ) : (
+                          <OverlayTrigger
+                            key="top"
+                            placement="top"
+                            overlay={
+                              <Tooltip id="tooltip-disabled">
+                                Musisz być zalogowany by móc głosować
+                              </Tooltip>
+                            }
+                          >
+                            <span className="d-inline-block">
+                              <LikeButton likes={likes} postId={postId} />
+                            </span>
+                          </OverlayTrigger>
+                        )}
                       </Col>
                     </Row>
                   </Card.Body>

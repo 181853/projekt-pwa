@@ -45,6 +45,8 @@ export const FirebaseProvider = ({ children }) => {
 
   const getPosts = () => database.collection("posts");
 
+  const getPost = (postId) => database.collection("posts").doc(postId);
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -58,6 +60,7 @@ export const FirebaseProvider = ({ children }) => {
         getImage,
         createPost,
         getPosts,
+        getPost,
       }}
     >
       {children}
