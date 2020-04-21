@@ -5,6 +5,7 @@ import { ROUTES } from "../constants";
 import Layout from "./layout";
 import NewPost from "./new-post";
 import AuthForm from "../components/auth-form";
+import SinglePost from "./single-post";
 
 const LogIn = () => <AuthForm isLoginForm />;
 const Registration = () => <AuthForm />;
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path={ROUTES.REGISTRATION} component={Registration} />
           <Route exact path={ROUTES.LOGIN} component={LogIn} />
           <Route exact path={ROUTES.POST_NEW} component={NewPost} />
+          <Route path={ROUTES.POST + "/:postId"} component={SinglePost} />
         </Switch>
       </Layout>
     </BrowserRouter>
