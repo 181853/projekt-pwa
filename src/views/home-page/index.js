@@ -44,7 +44,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className="mt-5">
       <Row className="justify-content-center">
         {isLoading && <Spinner animation="border" variant="info" />}
         {postData &&

@@ -47,6 +47,24 @@ export const FirebaseProvider = ({ children }) => {
 
   const getPost = (postId) => database.collection("posts").doc(postId);
 
+  const getUser = async (uid) => {
+    try {
+      const user = await database.collection("users").doc(uid).get();
+
+      if (user.exists) {
+        return user.data();
+      }
+    } catch (err) {
+      console.log("getUser", err);
+    }
+  };
+
+  const getPostComments = (uid) =>
+    database.collection("comments").doc(uid).collection("values");
+
+  const createUser = (postId, data) =>
+    database.collection("users").doc(postId).set(data);
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -61,6 +79,9 @@ export const FirebaseProvider = ({ children }) => {
         createPost,
         getPosts,
         getPost,
+        getUser,
+        createUser,
+        getPostComments,
       }}
     >
       {children}

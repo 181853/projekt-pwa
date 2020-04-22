@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -53,75 +54,77 @@ const NewPostForm = ({ children }) => {
   }
 
   return (
-    <Row className="justify-content-center">
-      {postURL && (
-        <Alert
-          variant="success"
-          className="col-xs-10"
-          onClose={() => setPostURL("")}
-          dismissible
-        >
-          <Alert.Heading>Dodałeś nowe ogłoszenie</Alert.Heading>
-          Przejdź
-          <Alert.Link
-            as={Link}
-            to={ROUTES.POST + "/" + postURL}
-            className="ml-1 mr-1"
+    <Container className="mt-5">
+      <Row className="justify-content-center">
+        {postURL && (
+          <Alert
+            variant="success"
+            className="col-xs-10"
+            onClose={() => setPostURL("")}
+            dismissible
           >
-            do ogłoszenia
-          </Alert.Link>
-          lub
-          <Alert.Link as={Link} to={ROUTES.HOME} className="ml-1">
-            do strony głównej
-          </Alert.Link>
-          .
-        </Alert>
-      )}
-      <Col xs={12} md={8}>
-        <Card className="mb-4 shadow-sm">
-          <Card.Body>
-            <Card.Title className="text-center mb-2">
-              Nowe ogłoszenie
-            </Card.Title>
-            <Formik
-              onSubmit={handleSubmit}
-              initialValues={{
-                title: "",
-                description: "",
-                address: {
-                  place_name: "",
-                  center: [],
-                },
-                image: "",
-              }}
-              validate={(values) => {
-                const errors = {};
-                if (!values.title) {
-                  errors.title = "Tytuł wymagany";
-                }
-                if (!values.description) {
-                  errors.description = "Opis wymagany";
-                }
-                if (!values.address.place_name) {
-                  errors.address = "Adres wymagany";
-                }
-                if (!values.image) {
-                  errors.image = "Zdjęcie wymagane";
-                }
-                if (values.address.place_name && !values.address.center) {
-                  errors.address =
-                    "Niepoprawny lub niepełny adres, skorzystaj z wyszukiwarki";
-                }
-
-                return errors;
-              }}
+            <Alert.Heading>Dodałeś nowe ogłoszenie</Alert.Heading>
+            Przejdź
+            <Alert.Link
+              as={Link}
+              to={ROUTES.POST + "/" + postURL}
+              className="ml-1 mr-1"
             >
-              {(state) => children(state)}
-            </Formik>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+              do ogłoszenia
+            </Alert.Link>
+            lub
+            <Alert.Link as={Link} to={ROUTES.HOME} className="ml-1">
+              do strony głównej
+            </Alert.Link>
+            .
+          </Alert>
+        )}
+        <Col xs={12} md={8}>
+          <Card className="shadow">
+            <Card.Body>
+              <Card.Title className="text-center mb-2">
+                Nowe ogłoszenie
+              </Card.Title>
+              <Formik
+                onSubmit={handleSubmit}
+                initialValues={{
+                  title: "",
+                  description: "",
+                  address: {
+                    place_name: "",
+                    center: [],
+                  },
+                  image: "",
+                }}
+                validate={(values) => {
+                  const errors = {};
+                  if (!values.title) {
+                    errors.title = "Tytuł wymagany";
+                  }
+                  if (!values.description) {
+                    errors.description = "Opis wymagany";
+                  }
+                  if (!values.address.place_name) {
+                    errors.address = "Adres wymagany";
+                  }
+                  if (!values.image) {
+                    errors.image = "Zdjęcie wymagane";
+                  }
+                  if (values.address.place_name && !values.address.center) {
+                    errors.address =
+                      "Niepoprawny lub niepełny adres, skorzystaj z wyszukiwarki";
+                  }
+
+                  return errors;
+                }}
+              >
+                {(state) => children(state)}
+              </Formik>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

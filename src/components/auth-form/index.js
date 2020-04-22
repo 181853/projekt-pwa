@@ -20,6 +20,7 @@ const AuthForm = ({ isLoginForm }) => {
     createUserWithEmailAndPassword,
     signInWithGoogle,
     signInWithGithub,
+    createUser,
   } = useContext(FirebaseContext);
   const history = useHistory();
   const { user } = useAuth();
@@ -29,8 +30,16 @@ const AuthForm = ({ isLoginForm }) => {
     setIsLoading(true);
 
     try {
-      await cb;
+      const data = await cb;
+      const { uid, displayName, email, photoURL } = data.user;
 
+      if (data.additionalUserInfo.isNewUser) {
+        await createUser(uid, {
+          displayName,
+          email,
+          photoURL,
+        });
+      }
       setIsLoading(false);
       history.push(ROUTES.HOME);
     } catch (err) {
