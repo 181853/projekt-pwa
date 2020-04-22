@@ -26,13 +26,18 @@ const HomePage = () => {
     setLoading(true);
 
     const unsubscribe = getPosts().onSnapshot((querySnapshot) => {
-      const data = querySnapshot.docs.reduce((acc, documentSnapshot) => {
-        acc[documentSnapshot.id] = documentSnapshot.data();
+      const sortedData = querySnapshot.docs
+        .map((documentSnapshot) => {
+          const data = documentSnapshot.data();
 
-        return acc;
-      }, {});
+          return {
+            id: documentSnapshot.id,
+            ...data,
+          };
+        })
+        .sort((a, b) => b.createdAt - a.createdAt);
 
-      setData(data);
+      setData(sortedData);
       setLoading(false);
     });
 
@@ -46,20 +51,14 @@ const HomePage = () => {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        {isLoading && <Spinner animation="border" variant="info" />}
-        {postData &&
-          Object.keys(postData).map((postId) => {
-            const homePagePost = postData[postId];
-            const {
-              title,
-              description,
-              createdAt,
-              imageURL,
-              likes,
-            } = homePagePost;
+        {isLoading ? (
+          <Spinner animation="border" variant="info" />
+        ) : (
+          (postData || []).map((post) => {
+            const { id, title, description, createdAt, imageURL, likes } = post;
 
             return (
-              <Col md="6" lg="4" className="mb-4" key={postId}>
+              <Col md="6" lg="4" className="mb-4" key={id}>
                 <Card className="shadow-sm">
                   <Card.Img variant="top" src={imageURL} />
                   <Card.Body>
@@ -71,7 +70,7 @@ const HomePage = () => {
                       <Col>
                         <Button
                           as={Link}
-                          to={ROUTES.POST + "/" + postId}
+                          to={ROUTES.POST + "/" + id}
                           variant="outline-secondary"
                           block
                         >
@@ -80,7 +79,7 @@ const HomePage = () => {
                       </Col>
                       <Col className="text-right">
                         {user ? (
-                          <LikeButton likes={likes} postId={postId} />
+                          <LikeButton likes={likes} postId={id} />
                         ) : (
                           <OverlayTrigger
                             key="top"
@@ -92,7 +91,7 @@ const HomePage = () => {
                             }
                           >
                             <span className="d-inline-block">
-                              <LikeButton likes={likes} postId={postId} />
+                              <LikeButton likes={likes} postId={id} />
                             </span>
                           </OverlayTrigger>
                         )}
@@ -106,7 +105,8 @@ const HomePage = () => {
                 </Card>
               </Col>
             );
-          })}
+          })
+        )}
       </Row>
     </Container>
   );
