@@ -23,3 +23,20 @@ main {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
+
+.post-container {
+  margin-top: -15vh;
+  z-index: 3;
+  position: relative;
+}
+
+.placeholder-map {
+  height: 50vh;
+  width: 100%;
+  background: #e2e3e5;
+}
+
+.mapboxgl-map {
+  height: 100%;
+  width: 100%;
+}
