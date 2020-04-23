@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <>
       <Header />
 
-      <Container as="main">{children}</Container>
+      <main>{children}</main>
 
       <footer className="footer py-4 mt-5 bg-white">
         <Container>

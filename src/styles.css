@@ -40,3 +40,7 @@ main {
   height: 100%;
   width: 100%;
 }
+
+.dropdown-toggle.nav-link {
+  padding: 0;
+}

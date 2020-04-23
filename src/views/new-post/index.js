@@ -176,7 +176,7 @@ const NewPost = () => {
               disabled={isSubmitting}
               type="submit"
               variant="info"
-              className="mt-4 mx-auto float-right"
+              className="mt-2 mx-auto float-right"
             >
               Stwórz nowe ogłoszenie
             </Button>
