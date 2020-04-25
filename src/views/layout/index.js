@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
 
-      <footer className="footer py-4 mt-5 bg-white">
+      <footer className="footer py-4 mt-2 bg-white">
         <Container>
           <Row className="align-items-center justify-content-center">
             <div className="col-md-4 text-center">

@@ -5,7 +5,7 @@ export const searchAddress = async (address) => {
         address +
         ".json?access_token=" +
         process.env.REACT_APP_MAPBOX_API_KEY +
-        "&autocomplete=false&country=pl&types=address&language=pl"
+        "&autocomplete=false&country=pl&types=address%2Cpoi&language=pl"
     );
 
     if (response.ok) {

@@ -86,10 +86,17 @@ const PostComments = ({ postId }) => {
                             className="rounded mr-2"
                             user={comment.author}
                           />
-                          <h5 className="mb-0 flex-grow-1">
+                          <h5
+                            className="mb-0 flex-grow-1 d-inline-block text-truncate"
+                            title={
+                              comment.author.displayName || comment.author.email
+                            }
+                          >
                             {comment.author.displayName || comment.author.email}
                           </h5>
-                          <span>{formatDate(comment.createdAt)}</span>
+                          <span className="text-right">
+                            {formatDate(comment.createdAt)}
+                          </span>
                         </div>
                         <p>{comment.value}</p>
                       </li>

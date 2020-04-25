@@ -18,7 +18,14 @@ const Header = () => {
     <header>
       <Navbar className="bg-white shadow" expand="sm">
         <Navbar.Brand as={Link} to={ROUTES.HOME}>
-          Projekt PWA
+          <img
+            src={process.env.PUBLIC_URL + "/logo.png"}
+            alt="//FIXME logo"
+            width={30}
+            height={30}
+            className="d-inline-block align-top"
+          />
+          {"// FIXME"}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
