@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 
 const Map = ({ coordinates }) => {
-  const Map = ReactMapboxGl({
+  const MapboxGl = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
   });
 
   return (
-    <Map
+    <MapboxGl
       center={coordinates}
       zoom={[15]}
       pitch={[60]}
@@ -19,7 +19,7 @@ const Map = ({ coordinates }) => {
       <Marker coordinates={coordinates} anchor="bottom">
         <FontAwesomeIcon icon={faMapPin} className="fa-4x text-info" />
       </Marker>
-    </Map>
+    </MapboxGl>
   );
 };
 
