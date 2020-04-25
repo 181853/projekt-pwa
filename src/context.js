@@ -23,6 +23,8 @@ export const FirebaseProvider = ({ children }) => {
   const database = app.firestore();
   const storage = app.storage();
 
+  database.enablePersistence();
+
   const googleProvider = new app.auth.GoogleAuthProvider();
   const githubProvider = new app.auth.GithubAuthProvider();
 

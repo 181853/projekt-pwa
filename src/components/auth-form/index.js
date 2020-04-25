@@ -28,6 +28,7 @@ const AuthForm = ({ isLoginForm }) => {
 
   const authForm = async (cb, setIsLoading) => {
     setIsLoading(true);
+    setSubmitError("");
 
     try {
       const data = await cb;

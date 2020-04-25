@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./home-page";
 import { ROUTES } from "../constants";
 import Layout from "./layout";
@@ -15,10 +15,11 @@ const App = () => {
     <BrowserRouter>
       <Layout>
         <Switch>
+          <Redirect exact from="/" to={ROUTES.HOME} />
           <Route exact path={ROUTES.HOME} component={HomePage} />
-          <Route exact path={ROUTES.REGISTRATION} component={Registration} />
-          <Route exact path={ROUTES.LOGIN} component={LogIn} />
-          <Route exact path={ROUTES.POST_NEW} component={NewPost} />
+          <Route path={ROUTES.REGISTRATION} component={Registration} />
+          <Route path={ROUTES.LOGIN} component={LogIn} />
+          <Route path={ROUTES.POST_NEW} component={NewPost} />
           <Route path={ROUTES.POST + "/:postId"} component={SinglePost} />
         </Switch>
       </Layout>

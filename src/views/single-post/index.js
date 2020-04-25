@@ -1,17 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, lazy, Suspense } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import ReactMapboxGl, { Marker } from "react-mapbox-gl";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FirebaseContext } from "../../context";
 import { formatDate } from "../../utils";
 import PostComments from "../../components/post-comments";
 import Spinner from "react-bootstrap/Spinner";
 import Avatar from "../../components/avatar";
+const Map = lazy(() => import("./map"));
 
 const SinglePost = ({
   match: {
@@ -35,7 +33,10 @@ const SinglePost = ({
 
           setData({
             ...data,
-            author: userDoc,
+            author: {
+              ...userDoc,
+              uid: data.authorId,
+            },
           });
         }
       } catch (e) {
@@ -49,26 +50,14 @@ const SinglePost = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const Map = ReactMapboxGl({
-    accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
-  });
-
   return (
     <>
-      <section className="placeholder-map shadow">
-        {!isLoading && data.coordinates && (
-          <Map
-            center={data.coordinates}
-            zoom={[15]}
-            pitch={[60]}
-            // eslint-disable-next-line react/style-prop-object
-            style="mapbox://styles/mapbox/light-v10"
-          >
-            <Marker coordinates={data.coordinates} anchor="bottom">
-              <FontAwesomeIcon icon={faMapPin} className="fa-4x text-info" />
-            </Marker>
-          </Map>
-        )}
+      <section className="placeholder-map shadow d-flex justify-content-center align-items-center">
+        <Suspense fallback={<Spinner animation="grow" variant="light" />}>
+          {!isLoading && data.coordinates && (
+            <Map coordinates={data.coordinates} />
+          )}
+        </Suspense>
       </section>
       <Container as="section" className="post-container">
         <Row className="justify-content-center">
@@ -84,10 +73,12 @@ const SinglePost = ({
                   <hr />
                   <div className="d-flex align-items-center">
                     <Avatar className="rounded mr-2" user={data.author} />
-                    <span className="flex-grow-1">
+                    <span className="flex-grow-1 text-truncate">
                       {data.author.displayName || data.author.email}
                     </span>
-                    <span>{formatDate(data.createdAt)}</span>
+                    <span className="text-right">
+                      {formatDate(data.createdAt)}
+                    </span>
                   </div>
                   <hr />
                   <Image

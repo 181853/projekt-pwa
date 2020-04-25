@@ -12,4 +12,5 @@ export const ERRORS = {
   "auth/email-already-in-use": "Użytkownik o podanym emailu już istnieje.",
   "auth/user-not-found": "Użytkownik nie istnieje.",
   "auth/popup-closed-by-user": "Pop up zamknięty przez użytkownika.",
+  "auth/weak-password": "Hasło za słabe.",
 };
