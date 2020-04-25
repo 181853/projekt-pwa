@@ -11,10 +11,8 @@ const Avatar = ({ user, className }) => {
       className={className}
       loading="lazy"
       src={src}
-      style={{
-        height: 38,
-        width: 38,
-      }}
+      height={38}
+      width={38}
     />
   );
 };
