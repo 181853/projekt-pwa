@@ -59,7 +59,7 @@ const HomePage = () => {
 
             return (
               <Col md="6" lg="4" className="mb-4" key={id}>
-                <Card className="shadow-sm">
+                <Card className="shadow">
                   <Card.Img variant="top" src={imageURL} />
                   <Card.Body>
                     <Card.Title>{title}</Card.Title>

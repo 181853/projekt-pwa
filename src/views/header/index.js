@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar className="bg-white shadow" expand="sm">
+      <Navbar className="bg-white shadow-sm" expand="sm">
         <Navbar.Brand as={Link} to={ROUTES.HOME}>
           <img
             src={process.env.PUBLIC_URL + "/logo.png"}

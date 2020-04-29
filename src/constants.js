@@ -1,9 +1,10 @@
 export const ROUTES = {
-  REGISTRATION: "/projekt-pwa/rejestracja",
-  LOGIN: "/projekt-pwa/logowanie",
-  POST: "/projekt-pwa/ogloszenie",
-  POST_NEW: "/projekt-pwa/nowe-ogloszenie",
-  HOME: "/projekt-pwa",
+  REGISTRATION: process.env.PUBLIC_URL + "/rejestracja",
+  LOGIN: process.env.PUBLIC_URL + "/logowanie",
+  POST: process.env.PUBLIC_URL + "/ogloszenie",
+  POST_NEW: process.env.PUBLIC_URL + "/nowe-ogloszenie",
+  HOME: process.env.PUBLIC_URL + "/home",
+  ROOT: process.env.PUBLIC_URL + "/",
 };
 
 export const ERRORS = {

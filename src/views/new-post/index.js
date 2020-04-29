@@ -137,8 +137,8 @@ const NewPost = () => {
                   );
                 })}
               {isSearching && (
-                <ListGroup.Item>
-                  <Spinner animation="border" variant="info" />
+                <ListGroup.Item className="d-flex mb-2 align-items-center">
+                  <Spinner animation="border" variant="info" className="mr-2" />
                   Szukam...
                 </ListGroup.Item>
               )}
